@@ -1,7 +1,19 @@
+import java.util.Scanner;
+
 public class MaxSubsequence {
 
     public static void main(String[] args) {
-        int[] valores = {-2, 11, -4, 13, -5, 9, -3, 2, -8, 4};
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese la cantidad de valores: ");
+        int n = scanner.nextInt();
+
+        int[] valores = new int[n];
+
+        System.out.println("Ingrese los " + n + " valores consecutivos:");
+        for (int i = 0; i < n; i++) {
+            valores[i] = scanner.nextInt();
+        }
 
         int maxSuma = Integer.MIN_VALUE;
         int sumaActual = 0;
@@ -9,7 +21,7 @@ public class MaxSubsequence {
         int inicioTemp = 0;
         int fin = 0;
 
-        for (int i = 0; i < valores.length; i++) {
+        for (int i = 0; i < n; i++) {
             sumaActual += valores[i];
 
             if (sumaActual > maxSuma) {
@@ -24,9 +36,13 @@ public class MaxSubsequence {
             }
         }
 
-        // Mostrar resultados
-        System.out.println("La sumatoria maxima es: " + maxSuma);
-        System.out.println("Desde la posicion " + (inicio + 1) + " hasta la " + (fin + 1));
+        if (maxSuma < 0) {
+            maxSuma = 0;
+            inicio = fin = 0;
+        }
+
+        System.out.println("La suma maxima es: " + maxSuma);
+        System.out.println("Subsecuencia desde la posicion " + (inicio + 1) + " hasta la " + (fin + 1));
 
         System.out.print("Subsecuencia: ");
         for (int i = inicio; i <= fin; i++) {
